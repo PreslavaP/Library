@@ -1,8 +1,7 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ClientHandler implements Runnable {
@@ -14,16 +13,20 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            clientSocket) {
+        try (
+                Scanner in = new Scanner(clientSocket.getInputStream());
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                clientSocket
+        ) {
 
             out.println("Welcome to the Library System!");
             out.println("Enter a function number (1-Search, 2-Borrow, 3-Show) or 'exit' to end:");
 
             String inputLine;
-            while((inputLine = in.readLine()) != null){
-                if(inputLine.equalsIgnoreCase("exit")){
+            while(in.hasNextLine()){
+                inputLine = in.nextLine();
+
+                if (inputLine.equalsIgnoreCase("exit")){
                     break;
                 }
 
@@ -56,9 +59,9 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void handleShow(BufferedReader in, PrintWriter out) throws IOException {
+    private void handleShow(Scanner in, PrintWriter out) throws IOException {
         out.println("Enter name of the library:");
-        String libraryName = in.readLine().trim();
+        String libraryName = in.nextLine().trim();
 
         if (libraryName.isEmpty()) {
             out.println("Please, enter right name of the library:");
@@ -86,9 +89,9 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void handleBorrow(BufferedReader in, PrintWriter out) throws IOException {
+    private void handleBorrow(Scanner in, PrintWriter out) throws IOException {
         out.println("Enter ID to the book you want to borrow:");
-        String idInput = in.readLine().trim();
+        String idInput = in.nextLine().trim();
 
         if(idInput.isEmpty()){
             out.println("Invalid ID. Please enter a valid ID.");
@@ -118,9 +121,9 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void handleSearch(BufferedReader in, PrintWriter out) throws IOException {
+    private void handleSearch(Scanner in, PrintWriter out) throws IOException {
         out.println("Enter title of the book you want to search:");
-        String title = in.readLine().trim().toLowerCase();
+        String title = in.nextLine().trim().toLowerCase();
 
         if (title.isEmpty()) {
             out.println("Please, enter valid title.");

@@ -13,7 +13,7 @@ public class LibraryServer {
     public static void main(String[] args) throws IOException {
         initializeDatabase();
 
-        System.out.println("Server started on port: " + PORT + "...");
+        System.out.println("Server started on port: " + PORT + " ...");
 
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
 
@@ -29,10 +29,10 @@ public class LibraryServer {
     }
 
     private static void initializeDatabase() {
-        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0134685991", "Java Programming", "J. Gosling", "Библиотека Център", true));
-        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0134685991", "Java Programming", "J. Gosling", "Библиотека Изток", true));
-        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0743273565", "The Great Gatsby", "F. Scott Fitzgerald", "Библиотека Запад", false));
-        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0123456789", "Algorithms Explained", "A. Tutor", "Библиотека Център", true));
+        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0134685991", "Java Programming", "J. Gosling", "Center Library", true));
+        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0134685991", "Java Programming", "J. Gosling", "East Library", false));
+        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0743273565", "The Great Gatsby", "F. Scott Fitzgerald", "West Library", true));
+        BOOK_DATABASE.add(new Book(ID_COUNTER.getAndIncrement(), "978-0123456789", "Algorithms Explained", "A. Tutor", "Center Library", true));
 
         System.out.println("The database is loaded with " + BOOK_DATABASE.size() + " records.");
     }

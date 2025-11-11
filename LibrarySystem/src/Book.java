@@ -39,7 +39,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Заглавие: " + title + ", Автор: " + author +
-                ", Библиотека: " + libraryName + ", Налична: " + (isAvailable ? "ДА" : "НЕ");
+        return "ID: " + id + ", Title: " + title + ", Author: " + author +
+                ", Library: " + libraryName + ", Available: " + (isAvailable ? "YES" : "NO");
     }
 }

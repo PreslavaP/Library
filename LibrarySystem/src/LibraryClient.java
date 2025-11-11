@@ -24,7 +24,11 @@ public class LibraryClient {
 
             while ((serverResponse = serverIn.readLine()) != null) {
                 System.out.println("Server: " + serverResponse);
-                if (serverResponse.toLowerCase().contains("select next function")) break;
+
+                if (serverResponse.toLowerCase().contains("enter a function number") ||
+                        serverResponse.toLowerCase().contains("select next function")) {
+                    break;
+                }
             }
 
             while (true) {
@@ -40,7 +44,11 @@ public class LibraryClient {
                     if (!serverResponse.isEmpty()) {
                         System.out.println("Server: " + serverResponse);
                     }
-                    if (serverResponse.toLowerCase().contains("select next function")) {
+
+                    if (serverResponse.toLowerCase().contains("select next function") ||
+                            serverResponse.toLowerCase().contains("enter title") ||
+                            serverResponse.toLowerCase().contains("enter id") ||
+                            serverResponse.toLowerCase().contains("enter name of the library")) {
                         break;
                     }
                 }
